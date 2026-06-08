@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <title id="pageTitle">Kampanya Fırsatı</title>
+  <meta name="facebook-domain-verification" content="ltt9dng4fc87p9kbup0aqdu0o2khf8" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <script>
+    let FB_PIXEL_ID = ''; 
+    window.TT_PIXEL_ID = '';
+  
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js");
+        const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js");
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyASsWNQ5l2YwJiqv7mQ_t3VX3gaHRmMlEs",
+          authDomain: "tunik-b8d9c.firebaseapp.com",
+          databaseURL: "https://tunik-b8d9c-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "tunik-b8d9c",
+          storageBucket: "tunik-b8d9c.firebasestorage.app",
+          messagingSenderId: "834065495202",
+          appId: "1:834065495202:web:3c3d9ecdc49d3587bc53fb"
+        };
+        
+        const app = initializeApp(firebaseConfig, 'pixelApp');
+        const db = getFirestore(app);
+        
+        const settingsDoc = await getDoc(doc(db, "settings", "siteConfig"));
+        if (settingsDoc.exists()) {
+          const settings = settingsDoc.data();
+          const dynamicFbId = settings.facebookPixelId || settings['cfg-facebookPixelId'];
+          if (dynamicFbId) FB_PIXEL_ID = dynamicFbId;
+          const dynamicTtId = settings.tiktokPixelId || settings['cfg-tiktokPixelId'];
+          if (dynamicTtId) window.TT_PIXEL_ID = dynamicTtId;
+        }
+
+        if (FB_PIXEL_ID) {
+          const noscriptEl = document.getElementById('fb-noscript');
+          if (noscriptEl) {
+            const imgEl = document.createElement('img');
+            imgEl.height = '1'; imgEl.width = '1'; imgEl.style.display = 'none';
+            imgEl.src = `https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`;
+            noscriptEl.innerHTML = ''; noscriptEl.appendChild(imgEl);
+          }
+          
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          
+          fbq('init', FB_PIXEL_ID); fbq('track', 'PageView');
+        }
+
+        if (window.TT_PIXEL_ID) {
+          !function (w, d, t) {
+            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=i+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+          }(window, document, 'ttq');
+          ttq.load(window.TT_PIXEL_ID); ttq.page();
+        }
+      } catch (error) { console.error('Pixel yüklenirken hata:', error); }
+    });
+  </script>
+  <noscript id="fb-noscript"></noscript>
+
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background-color: #f9fafb; padding-bottom: 80px;}
+    .input-error-message { display: none; align-items: center; gap: 6px; margin-top: 4px; font-size: 12px; color: #ef4444; font-weight: 500; }
+    .input-error-message.show { display: flex; }
+    .custom-input.error, .custom-select.error { border-color: #ef4444 !important; background: rgba(239, 68, 68, 0.02) !important; }
+    .char-counter { font-size: 11px; color: #6b7280; text-align: right; margin-top: 4px; }
+    .char-counter.danger { color: #ef4444; }
+    
+    .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 12px 24px; border-radius: 30px; font-weight: 600; font-size: 13px; z-index: 999; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; text-align: center; animation: slideDown 0.4s ease, slideUp 0.4s ease 2.5s forwards; }
+    @keyframes slideDown { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+    @keyframes slideUp { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, -20px); } }
+
+    .success-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; animation: fadeIn 0.4s forwards; padding: 20px; }
+    .success-modal { background: white; border: 2px solid #fbcfe8; border-radius: 24px; padding: 40px 30px; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: translateY(20px); animation: slideUpModal 0.5s forwards 0.1s; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes slideUpModal { to { transform: translateY(0); } }
+
+    .lightbox-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; animation: fadeIn 0.3s forwards; padding: 20px; cursor: pointer; }
+    .lightbox-image { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 12px; }
+    
+    /* Mobil App Tarzı Gizli Scrollbar ve İvmeli Kaydırma */
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* Mobil Tek Sütun Stili */
+    @media (max-width: 640px) {
+      .product-list-mobile {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+        padding: 0 !important;
+      }
+    }
+
+    /* SSS Accordion Stilleri */
+    .faq-item {
+      border-bottom: 1px solid #f3f4f6;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-question {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .faq-question:hover {
+      background-color: #fdf2f8;
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+    }
+    
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-question {
+      color: #ec4899;
+    }
+	/* ============================================
+   TRENDYOL TARZI - Sosyal Kanıt (Hızlı Teslimat)
+   ============================================ */
+.additional-info {
+  margin-top: 4px;
+}
+
+.static-social-proof-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.social-proof {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.social-proof--static {
+  background-color: #f0faf5;
+  border-radius: 4px;
+  padding: 4px 6px;
+  border: 1px solid #d1f0e0;
+}
+
+.social-proof-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.social-proof-content .emoji {
+  font-size: 12px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.social-proof-content .description {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.3;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social-proof-content .green {
+  color: #0b8a5a;
+  font-weight: 600;
+}
+
+/* ============================================
+   TRENDYOL TARZI - Değerlendirme / Yıldız Puanı
+   ============================================ */
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  flex-wrap: nowrap;
+}
+
+.review-rating .average-rating {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.review-rating .rating-stars-container {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.review-rating .star-wrapper {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.review-rating .star-empty {
+  display: block;
+  width: 10px;
+  height: 10px;
+  opacity: 0.4;
+}
+
+.review-rating .star-full-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.review-rating .star-full {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.review-rating .total-count {
+  font-size: 11px;
+  color: #999;
+  font-weight: 400;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-left: 1px;
+}
+
+.review-rating .review-photo {
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+  </style>
+</head>
+<body>
+
+  <header class="top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-sm fixed border-b border-gray-200 shadow-sm transition-all duration-300">
+    <div class="flex items-center justify-between px-4 py-2 md:px-10 md:py-3 relative">
+        <button type="button" class="z-10 flex size-10 shrink-0 items-center justify-center rounded-lg text-gray-800 hover:bg-black/5">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+        <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 w-full flex justify-center md:justify-start md:w-auto">
+            <h1 class="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent" id="headerLogo">LOGO</h1>
+        </a>
+        <nav class="flex items-center space-x-3">
+            <a href="#" class="text-pink-600 text-2xl"><i class="fab fa-instagram"></i></a>
+            <a href="#" id="whatsappBtn" class="text-green-600 text-2xl"><i class="fab fa-whatsapp"></i></a>
+        </nav>
+    </div>
+  </header>
+
+  <main class="mt-[56px] md:mt-[64px]">
+    <img src="https://ecommerce.cheetahcdn.com/cdn-cgi/image/quality=100,format=auto/yeni-moda-firsati/campaigns/01KCC21Y9XXV9QBTGPTWFRAJS0.gif" class="w-full h-[350px] md:h-[550px] object-cover object-center relative z-0" />
+    
+    <section class="relative z-10 -mt-[50px] md:-mt-[70px] px-4 md:px-10 pb-5">
+      <div class="mx-auto max-w-xl">
+        <div class="group flex flex-col justify-center gap-1 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 p-4 text-center bg-white/95 backdrop-blur-sm border-2 border-pink-500">
+            <h1 class="text-sm md:text-base font-bold text-pink-600 transition" id="heroTag">🔥 YENİ SEZON 🔥</h1>
+            <h3 class="text-sm md:text-base font-bold text-pink-600 transition" id="heroTitle">Kampanya Yükleniyor</h3>
+            <div class="text-xs md:text-sm text-gray-600 font-medium" id="campaign-desc">Açıklama yükleniyor...</div>
+            <div class="mt-1"><span class="inline-block text-xl md:text-2xl font-black text-gray-900" id="campaignPrice">0₺</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="product-list-selection" class="py-5 bg-white">
+        <div class="flex flex-col gap-4">
+            
+            <div class="flex items-center justify-between sticky top-[56px] md:top-[64px] bg-white z-40 py-3 md:py-2 px-4 md:px-10 shadow-md border-b border-gray-200">
+                <div>
+                    <h2 class="text-sm md:text-lg font-bold text-pink-500" id="stickyCampaignTitle">Kampanya</h2>
+                    <div class="text-xs md:text-sm font-normal text-gray-500" id="stickyCampaignDesc">Koleksiyonumuzdan Seçin</div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="inline-block text-lg md:text-2xl font-black text-gray-900" id="stickyCampaignPrice">0₺</span>
+                    <span class="text-xs md:text-base text-gray-700 font-semibold">
+                        Seçili Ürün: 
+                        <span id="selected-product-count" class="text-pink-600 font-bold">0</span> / 
+                        <span id="target-product-count">1</span>
+                    </span>
+                </div>
+            </div>
+            
+            <div id="loading" class="text-center py-10 text-pink-500 font-bold">KOLEKSİYON YÜKLENİYOR...</div>
+            
+            <div id="product-list" class="product-list-mobile px-1 md:px-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-4"></div>
+        </div>
+    </section>
+
+    <section id="order-section" class="py-5 px-4 md:px-10 bg-gray-50 hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-lock text-pink-500 text-lg"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Seçili Ürünler</h2>
+                </div>
+                
+                <div id="order-warning-banner" class="mt-4 border-2 border-pink-300 rounded-lg p-3 bg-pink-50 flex items-start gap-3 mb-4 transition-all">
+                    <i id="warning-icon" class="fa-solid fa-circle-info text-pink-500 text-lg mt-0.5"></i>
+                    <div class="flex flex-col">
+                        <h4 id="warning-title" class="font-bold text-sm text-pink-700">Ürün Seçimi Gerekli</h4>
+                        <p id="warning-message" class="text-sm text-gray-700">Sipariş verebilmek için lütfen yukarıdan ürün seçin.</p>
+                    </div>
+                </div>
+
+                <div id="cart-items-summary" class="flex flex-col gap-3"></div>
+            </div>
+
+            <div class="flex items-center gap-2 mb-6 mt-8">
+                <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+                <h2 class="text-xl font-bold text-gray-900">Teslimat Bilgileri</h2>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-4 md:p-6 border border-gray-200">
+                <form id="orderForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" novalidate>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad <span class="text-red-500">*</span></label>
+                        <input class="custom-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none" type="text" id="adSoyad" placeholder="Adınız ve soyadınız" maxlength="50" required>
+                        <div class="char-counter" id="adSoyad-counter">0/50</div>
+                        <div class="input-error-message" id="adSoyad-error"><span>Lütfen geçerli ad soyad girin</span></div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Telefon Numarası <span class="text-red-500">*</span></label>
+                        <input class="custom-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none" type="tel" id="telefon" placeholder="05XX XXX XX XX" maxlength="11" required>
+                        <div class="char-counter" id="telefon-counter">0/11</div>
+                        <div class="input-error-message" id="telefon-error"><span>Geçerli bir telefon numarası girin</span></div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">İl <span class="text-red-500">*</span></label>
+                        <select class="custom-select w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none bg-white" id="il" required>
+                            <option value="">İl Seçiniz</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">İlçe <span class="text-red-500">*</span></label>
+                        <select class="custom-select w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none bg-gray-50 disabled:cursor-not-allowed" id="ilce" required disabled>
+                            <option value="">Önce il seçiniz</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Açık Adres <span class="text-red-500">*</span></label>
+                        <textarea class="custom-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none resize-none" id="adres" placeholder="Mahalle, sokak, bina no, daire no..." rows="3" maxlength="300" required></textarea>
+                        <div class="char-counter" id="adres-counter">0/300</div>
+                        <div class="input-error-message" id="adres-error"><span>Adres giriniz</span></div>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Not (opsiyonel)</label>
+                        <input class="custom-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none" type="text" id="mesaj" placeholder="Örn: Kapı zili arızalı" maxlength="100">
+                        <div class="char-counter" id="mesaj-counter">0/100</div>
+                    </div>
+
+                    <div class="md:col-span-2 mt-4 bg-gray-50 rounded-lg border border-gray-200 p-4">
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm text-gray-700">
+                                <span>Toplam Ürün:</span>
+                                <span class="font-bold" id="summary-count">0 Adet</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Kargo:</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-gray-400 line-through">199₺</span>
+                                    <span class="text-green-600 font-semibold">Ücretsiz</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Kapıda Ödeme:</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-gray-400 line-through">299₺</span>
+                                    <span class="text-green-600 font-semibold">Ücretsiz</span>
+                                </div>
+                            </div>
+                            <div class="border-t border-gray-200 pt-2 mt-2 flex justify-between items-center">
+                                <span class="text-base font-bold text-gray-900">Ödenecek Tutar:</span>
+                                <span class="text-xl font-bold text-pink-500" id="summary-total">0.00 ₺</span>
+                            </div>
+                        </div>
+                        <button type="submit" id="submitBtn" class="w-full bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2" disabled>
+                            Ürün Seçmeniz Gerekiyor
+                        </button>
+                        <div class="mt-4 bg-gray-100 rounded-lg p-4 flex items-start gap-3">
+                            <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-semibold mb-1">Kapıda Ödeme Sistemi &amp; İade Hakkı</p>
+                                <p>Siparişlerinizi 14 gün içinde iade etme hakkınız bulunmaktadır.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 🆕 Sıkça Sorulanlar Bölümü -->
+            <div class="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div class="p-4 md:p-6 border-b border-gray-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-circle-question text-pink-500 text-xl"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900">Sıkça Sorulanlar</h2>
+                    </div>
+                </div>
+                
+                <div class="divide-y divide-gray-100">
+                    <!-- Soru 1: Kumaş Bilgisi -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-4 md:p-5 cursor-pointer select-none" onclick="toggleFaq(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">🧵</span>
+                                <h3 class="text-sm md:text-base font-semibold text-gray-800">Kumaş Bilgisi</h3>
+                            </div>
+                            <i class="faq-icon fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="px-4 md:px-5 pb-4 md:pb-5 pl-12 md:pl-14 text-sm text-gray-600 leading-relaxed">
+                                İki iplik örme kumaştır, mevsimlik kullanıma uygundur.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Soru 2: Teslimat Süresi -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-4 md:p-5 cursor-pointer select-none" onclick="toggleFaq(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">🚚</span>
+                                <h3 class="text-sm md:text-base font-semibold text-gray-800">Teslimat Süresi</h3>
+                            </div>
+                            <i class="faq-icon fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="px-4 md:px-5 pb-4 md:pb-5 pl-12 md:pl-14 text-sm text-gray-600 leading-relaxed">
+                                Alınan siparişler 2-3 iş günü içerisinde kargoya veriliyor, sürat kargo da tahmini 3 iş günü içerisinde teslim ediyor.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Soru 3: Sipariş Takip -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-4 md:p-5 cursor-pointer select-none" onclick="toggleFaq(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">📦</span>
+                                <h3 class="text-sm md:text-base font-semibold text-gray-800">Sipariş Takip</h3>
+                            </div>
+                            <i class="faq-icon fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="px-4 md:px-5 pb-4 md:pb-5 pl-12 md:pl-14 text-sm text-gray-600 leading-relaxed">
+                                Sistemimizde sipariş takip ekranı bulunmadığından sipariş takibinde müşteri hizmetlerimiz yardımcı olacaktır.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Soru 4: Ödeme Seçeneği -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-4 md:p-5 cursor-pointer select-none" onclick="toggleFaq(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">💳</span>
+                                <h3 class="text-sm md:text-base font-semibold text-gray-800">Ödeme Seçeneği</h3>
+                            </div>
+                            <i class="faq-icon fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="px-4 md:px-5 pb-4 md:pb-5 pl-12 md:pl-14 text-sm text-gray-600 leading-relaxed">
+                                Kapıda ödeme güvencesiyle gelmektedir.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Soru 5: Değişim ve İade -->
+                    <div class="faq-item">
+                        <div class="faq-question flex items-center justify-between p-4 md:p-5 cursor-pointer select-none" onclick="toggleFaq(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">🔄</span>
+                                <h3 class="text-sm md:text-base font-semibold text-gray-800">Değişim ve İade</h3>
+                            </div>
+                            <i class="faq-icon fa-solid fa-chevron-down text-gray-400 text-sm transition-transform"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="px-4 md:px-5 pb-4 md:pb-5 pl-12 md:pl-14 text-sm text-gray-600 leading-relaxed">
+                                Değişim seçeneğimiz mevcut değil, 14 gün içerisinde iade hakkı mevcut.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 p-3 hidden justify-between items-center z-40 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+    <div>
+      <div class="text-xs text-gray-500 font-bold" id="cart-count">0 Ürün</div>
+      <div class="text-lg font-bold text-pink-500" id="total-price-display">0.00 ₺</div>
+    </div>
+    <button onclick="window.processStickyClick()" class="bg-gray-200 text-gray-600 px-6 py-2 rounded-full font-bold transition-all text-sm" id="sticky-checkout-btn">
+        Eksik Ürün Var
+    </button>
+  </div>
+
+  <footer>
+    <section class="flex flex-col items-center justify-center bg-gray-100 py-8 px-4 mt-8 border-t border-gray-200">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl">
+        <div class="flex flex-col items-center text-center gap-3"><i class="fas fa-shipping-fast text-green-500 text-3xl"></i><h3 class="font-semibold text-sm">Hızlı Kargo</h3></div>
+        <div class="flex flex-col items-center text-center gap-3"><i class="fas fa-box-open text-blue-500 text-3xl"></i><h3 class="font-semibold text-sm">İade Hakkı</h3></div>
+        <div class="flex flex-col items-center text-center gap-3"><i class="fas fa-money-bill-wave text-yellow-500 text-3xl"></i><h3 class="font-semibold text-sm">Kapıda Ödeme</h3></div>
+        <div class="flex flex-col items-center text-center gap-3"><i class="fas fa-shield-halved text-purple-500 text-3xl"></i><h3 class="font-semibold text-sm">Güvenli Alışveriş</h3></div>
+      </div>
+      <div class="mt-8 text-xs text-gray-500" id="footerText">© 2026 Kampanya. Tüm hakları saklıdır.</div>
+    </section>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 🆕 SSS Accordion JavaScript -->
+  <script>
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      const isActive = faqItem.classList.contains('active');
+      
+      // Tüm açık soruları kapat
+      document.querySelectorAll('.faq-item.active').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Tıklanan soruyu aç (eğer zaten açık değilse)
+      if (!isActive) {
+        faqItem.classList.add('active');
+      }
+    }
+  </script>
+
+  <script type="module">
+    function sanitizeInput(input) {
+      if (!input) return '';
+      return input.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').replace(/on\w+\s*=/gi, '').replace(/&#/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/['";]/g, '').trim();
+    }
+    function isValidName(input) { return /^[a-zA-ZğĞüÜşŞıİöÖçÇ\s]+$/.test(input); }
+    function isValidPhone(input) { return /^\d+$/.test(input) && input.length === 11 && input.startsWith('05'); }
+    function isValidAddress(input) { return !/<[^>]*>/g.test(input) && !/javascript:/gi.test(input) && !/on\w+\s*=/gi.test(input) && input.length >= 10; }
+    
+    function updateCharCounter(inputId, counterId, maxLength) {
+      const input = document.getElementById(inputId); const counter = document.getElementById(counterId);
+      if (input && counter) {
+        const length = input.value.length; counter.textContent = `${length}/${maxLength}`;
+        counter.className = 'char-counter'; if (length >= maxLength) counter.classList.add('danger');
+      }
+    }
+    
+    function showInputError(inputId, errorId, show) {
+      const input = document.getElementById(inputId); const error = document.getElementById(errorId);
+      if (input && error) {
+        if (show) { input.classList.add('error'); error.classList.add('show'); } 
+        else { input.classList.remove('error'); error.classList.remove('show'); }
+      }
+    }
+
+    function setupAdSoyadValidation() {
+      const input = document.getElementById('adSoyad'); if (!input) return;
+      input.addEventListener('input', function() {
+        let cleaned = this.value.replace(/[^a-zA-ZğĞüÜşŞıİöÖçÇ\s]/g, '').substring(0, 50).replace(/\s+/g, ' ');
+        if (this.value !== cleaned) this.value = cleaned;
+        updateCharCounter('adSoyad', 'adSoyad-counter', 50); showInputError('adSoyad', 'adSoyad-error', cleaned.length > 0 && !isValidName(cleaned));
+      });
+    }
+
+    function setupTelefonValidation() {
+      const input = document.getElementById('telefon'); if (!input) return;
+      input.addEventListener('input', function() {
+        let value = this.value.replace(/[^0-9]/g, '');
+        if (value.startsWith('905')) value = '0' + value.substring(2);
+        else if (value.startsWith('5') && value.length <= 10) value = '0' + value;
+        else if (value.length > 0 && !value.startsWith('0')) value = '0' + value;
+        if (value.length > 11) value = value.substring(0, 11);
+        this.value = value;
+        updateCharCounter('telefon', 'telefon-counter', 11); showInputError('telefon', 'telefon-error', value.length > 0 && value.length < 11);
+      });
+    }
+
+    function setupAdresValidation() {
+      const input = document.getElementById('adres'); if (!input) return;
+      input.addEventListener('input', function() {
+        if (/<[^>]*>/g.test(this.value)) this.value = sanitizeInput(this.value);
+        if (this.value.length > 300) this.value = this.value.substring(0, 300);
+        updateCharCounter('adres', 'adres-counter', 300);
+      });
+    }
+
+    function setupMesajValidation() {
+      const input = document.getElementById('mesaj'); if (!input) return;
+      input.addEventListener('input', function() {
+        if (/<[^>]*>/g.test(this.value)) this.value = sanitizeInput(this.value);
+        if (this.value.length > 100) this.value = this.value.substring(0, 100);
+        updateCharCounter('mesaj', 'mesaj-counter', 100);
+      });
+    }
+
+    function validateForm() {
+      let isValid = true; const errors = [];
+      const adSoyadValue = document.getElementById('adSoyad').value.trim();
+      if (!adSoyadValue || !isValidName(adSoyadValue) || adSoyadValue.length < 3) { showInputError('adSoyad', 'adSoyad-error', true); isValid = false; } else { showInputError('adSoyad', 'adSoyad-error', false); }
+      const telefonValue = document.getElementById('telefon').value;
+      if (!telefonValue || !isValidPhone(telefonValue)) { showInputError('telefon', 'telefon-error', true); isValid = false; } else { showInputError('telefon', 'telefon-error', false); }
+      if (!document.getElementById('il').value) isValid = false;
+      if (!document.getElementById('ilce').value) isValid = false;
+      const adresValue = document.getElementById('adres').value.trim();
+      if (!adresValue || !isValidAddress(adresValue)) { showInputError('adres', 'adres-error', true); isValid = false; } else { showInputError('adres', 'adres-error', false); }
+      return { isValid, errors };
+    }
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyASsWNQ5l2YwJiqv7mQ_t3VX3gaHRmMlEs",
+      authDomain: "tunik-b8d9c.firebaseapp.com",
+      databaseURL: "https://tunik-b8d9c-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "tunik-b8d9c",
+      storageBucket: "tunik-b8d9c.firebasestorage.app",
+      messagingSenderId: "834065495202",
+      appId: "1:834065495202:web:3c3d9ecdc49d3587bc53fb"
+    };
+
+    const app = initializeApp(firebaseConfig, 'mainApp');
+    const db = getFirestore(app);
+
+    let cart = [];
+    let allProducts = [];
+    let campaignSettings = { active: false, secondProductPrice: 0, message: "", minOrderCount: 1 };
+    window._hasAutoScrolledToForm = false;
+    let ilIlceVerileri = {}; 
+
+    // --- TRACKING API START ---
+    const TrackingAPI = {
+      generateEventId() { return 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9); },
+      
+      viewContent(product) {
+        const eventId = this.generateEventId();
+        const value = Number(product.fiyat);
+        if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: product.isim, content_ids: [product.id], content_type: 'product', value: value, currency: 'TRY' }, { eventID: eventId });
+        if (typeof ttq !== 'undefined') ttq.track('ViewContent', { contents: [{ content_id: product.id, content_name: product.isim, quantity: 1, price: value }], content_type: 'product', value: value, currency: 'TRY' }, { event_id: eventId });
+      },
+
+      addToCart(product) {
+        const eventId = this.generateEventId();
+        const value = Number(product.fiyat);
+        if (typeof fbq === 'function') fbq('track', 'AddToCart', { content_name: product.isim, content_ids: [product.id], content_type: 'product', value: value, currency: 'TRY', contents: [{ id: product.id, quantity: 1, item_price: value }] }, { eventID: eventId });
+        if (typeof ttq !== 'undefined') ttq.track('AddToCart', { contents: [{ content_id: product.id, content_name: product.isim, quantity: 1, price: value }], content_type: 'product', value: value, currency: 'TRY' }, { event_id: eventId });
+      },
+
+      initiateCheckout(cartItems, totalValue) {
+        const eventId = this.generateEventId();
+        const fbContents = cartItems.map((item, index) => ({ id: item.id, quantity: 1, item_price: (index > 0 && campaignSettings.active) ? Number(campaignSettings.secondProductPrice) : Number(item.fiyat) }));
+        const ttContents = cartItems.map((item, index) => ({ content_id: item.id, content_name: item.isim, quantity: 1, price: (index > 0 && campaignSettings.active) ? Number(campaignSettings.secondProductPrice) : Number(item.fiyat) }));
+        
+        if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { content_ids: cartItems.map(i => i.id), contents: fbContents, content_type: 'product', value: Number(totalValue), currency: 'TRY', num_items: cartItems.length }, { eventID: eventId });
+        if (typeof ttq !== 'undefined') ttq.track('InitiateCheckout', { contents: ttContents, content_type: 'product', value: Number(totalValue), currency: 'TRY' }, { event_id: eventId });
+      },
+
+      purchase(orderId, cartItems, totalValue, customerInfo) {
+        const eventId = this.generateEventId();
+        const fbContents = cartItems.map((item, index) => ({ id: item.id, quantity: 1, item_price: (index > 0 && campaignSettings.active) ? Number(campaignSettings.secondProductPrice) : Number(item.fiyat) }));
+        const ttContents = cartItems.map((item, index) => ({ content_id: item.id, content_name: item.isim, quantity: 1, price: (index > 0 && campaignSettings.active) ? Number(campaignSettings.secondProductPrice) : Number(item.fiyat) }));
+        
+        if (typeof fbq === 'function') {
+          fbq('set', 'userData', { ph: customerInfo.phone, fn: customerInfo.firstName, ln: customerInfo.lastName, ct: customerInfo.city }, FB_PIXEL_ID);
+          fbq('track', 'Purchase', { content_ids: cartItems.map(i => i.id), contents: fbContents, content_type: 'product', value: Number(totalValue), currency: 'TRY', num_items: cartItems.length, order_id: orderId }, { eventID: eventId });
+        }
+        
+        if (typeof ttq !== 'undefined') {
+          ttq.identify({ phone_number: customerInfo.phone });
+          ttq.track('CompletePayment', { contents: ttContents, content_type: 'product', value: Number(totalValue), currency: 'TRY' }, { event_id: eventId });
+        }
+      }
+    };
+    // --- TRACKING API END ---
+
+    async function loadIlIlceData() {
+      try {
+        const response = await fetch('il-ilce.json');
+        if (!response.ok) throw new Error('Ağ hatası: JSON yüklenemedi');
+        ilIlceVerileri = await response.json();
+      } catch (error) {
+        console.warn('il-ilce.json yüklenemedi. Test amaçlı geçici veriler kullanılıyor.', error);
+        ilIlceVerileri = {
+          "Adana": ["Ceyhan", "Çukurova", "Sarıçam", "Seyhan", "Yüreğir"],
+          "İstanbul": ["Kadıköy", "Şişli", "Beşiktaş", "Üsküdar", "Maltepe"],
+          "Ankara": ["Çankaya", "Keçiören", "Yenimahalle", "Mamak", "Etimesgut"]
+        };
+      }
+      initIlIlceSelectors();
+    }
+
+    function initIlIlceSelectors() {
+      const ilSelect = document.getElementById('il'); const ilceSelect = document.getElementById('ilce');
+      ilSelect.innerHTML = '<option value="">İl Seçiniz</option>';
+      const iller = Object.keys(ilIlceVerileri).sort();
+      iller.forEach(il => { ilSelect.appendChild(new Option(il, il)); });
+      
+      ilSelect.addEventListener('change', function() {
+        const secilenIl = this.value; ilceSelect.innerHTML = '';
+        if (secilenIl && ilIlceVerileri[secilenIl]) {
+          const ilceler = [...ilIlceVerileri[secilenIl]].sort();
+          ilceSelect.appendChild(new Option('İlçe Seçiniz', ''));
+          ilceler.forEach(ilce => ilceSelect.appendChild(new Option(ilce, ilce)));
+          ilceSelect.disabled = false; ilceSelect.classList.remove('bg-gray-50', 'disabled:cursor-not-allowed'); ilceSelect.classList.add('bg-white');
+        } else {
+          ilceSelect.appendChild(new Option('Önce il seçiniz', ''));
+          ilceSelect.disabled = true; ilceSelect.classList.add('bg-gray-50', 'disabled:cursor-not-allowed'); ilceSelect.classList.remove('bg-white');
+        }
+      });
+    }
+
+    function showToast(message, type = 'error') {
+      const existingToast = document.querySelector('.toast'); if (existingToast) existingToast.remove();
+      const toast = document.createElement('div'); toast.className = 'toast';
+      toast.style.color = type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#10b981';
+      toast.style.borderColor = toast.style.color; toast.textContent = message; document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    window.showSuccessModal = function() {
+      const overlay = document.createElement('div'); overlay.className = 'success-overlay';
+      overlay.innerHTML = `
+        <div class="success-modal">
+          <div class="mx-auto w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center text-3xl mb-4"><i class="fa-solid fa-check"></i></div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Siparişiniz Alındı!</h2>
+          <p class="text-sm text-gray-600 mb-6">Tebrikler, siparişiniz başarıyla sistemimize düştü. Müşteri temsilcimiz WhatsApp üzerinden iletişime geçecektir.</p>
+          <div class="text-xs text-gray-400">Bu ekran <span id="countdown">15</span> saniye içinde kapanacaktır...</div>
+        </div>`;
+      document.body.appendChild(overlay);
+      let counter = 15;
+      const interval = setInterval(() => { counter--; const countEl = document.getElementById('countdown'); if(countEl) countEl.innerText = counter; if(counter <= 0) clearInterval(interval); }, 1000);
+    };
+
+    function calculateTotal() { return cart.reduce((total, item, index) => total + ((index > 0 && campaignSettings.active) ? campaignSettings.secondProductPrice : item.fiyat), 0); }
+
+async function loadSiteSettings() {
+      try {
+        const siteConfigDoc = await getDoc(doc(db, "settings", "siteConfig"));
+        if (siteConfigDoc.exists()) {
+          const settings = siteConfigDoc.data();
+          
+          const setDomIfExist = (id, value, isHTML = false) => {
+            const el = document.getElementById(id);
+            if (el && value) {
+              isHTML ? el.innerHTML = value : el.textContent = value;
+            }
+          };
+
+          setDomIfExist('pageTitle', settings.siteTitle);
+          if(settings.siteTitle) document.title = settings.siteTitle;
+          setDomIfExist('headerLogo', settings.logoText);
+          
+          if (settings.whatsappNumber) {
+            const waBtn = document.getElementById('whatsappBtn');
+            if(waBtn) waBtn.href = `https://wa.me/${settings.whatsappNumber}`;
+          }
+
+          setDomIfExist('campaignTitle', settings.campaignTitle);
+          setDomIfExist('stickyCampaignTitle', settings.campaignTitle);
+          
+          setDomIfExist('campaignSubtitle', settings.campaignSubtitle);
+          setDomIfExist('stickyCampaignDesc', settings.campaignSubtitle);
+          
+          setDomIfExist('campaignPrice', settings.campaignPrice);
+          setDomIfExist('stickyCampaignPrice', settings.campaignPrice);
+          
+          setDomIfExist('footerText', settings.footerText);
+
+          setDomIfExist('heroTitle', settings.heroTitle, true);
+          setDomIfExist('heroTag', settings.heroTag);
+          setDomIfExist('campaign-desc', settings.heroDescription);
+        }
+      } catch (error) {
+          console.error("Site ayarları çekilirken hata oluştu:", error);
+      }
+    }
+
+    async function initSystem() {
+      try {
+        window.AKTIF_DOMAIN = window.location.hostname;
+        await loadSiteSettings();
+        const campDoc = await getDoc(doc(db, "settings", "campaign"));
+        if (campDoc.exists()) {
+          campaignSettings = campDoc.data();
+          if (!campaignSettings.minOrderCount) campaignSettings.minOrderCount = 1;
+        }
+        
+        const targetCountEl = document.getElementById('target-product-count');
+        if(targetCountEl) targetCountEl.innerText = campaignSettings.minOrderCount;
+
+        await loadIlIlceData();
+
+        setupAdSoyadValidation(); setupTelefonValidation(); setupAdresValidation(); setupMesajValidation();
+        await loadProducts();
+      } catch (err) {
+        document.getElementById('loading').innerText = "Yüklenirken bir hata oluştu.";
+      }
+    }
+
+async function loadProducts() {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const listDiv = document.getElementById('product-list');
+      document.getElementById('loading').style.display = 'none';
+      listDiv.innerHTML = '';
+      const productsArray = [];
+      querySnapshot.forEach((doc) => {
+        const p = { id: doc.id, ...doc.data() };
+        if (p.aktif) productsArray.push(p);
+      });
+      productsArray.sort((a, b) => (a.eklenmeTarihi ? a.eklenmeTarihi.toDate() : new Date(0)) - (b.eklenmeTarihi ? b.eklenmeTarihi.toDate() : new Date(0)));
+
+      productsArray.forEach((p) => {
+        allProducts.push(p);
+        
+        // Overlay Butonları tasarımı: Dokunmatik alanı büyütüldü ve daha profesyonel hale getirildi.
+        let variantBoxes = (p.varyantlar || []).map(v => {
+            let size = v;
+            let detail = "";
+            const match = v.match(/\((.*?)\)\s*(.*)/);
+            if(match) {
+                size = match[1];
+                detail = match[2];
+            }
+
+            return `
+            <button type="button" onclick="event.stopPropagation(); window.addToCart('${p.id}', '${v}')" 
+                class="shrink-0 snap-center flex flex-col items-center justify-center min-w-[68px] h-[48px] bg-white/95 backdrop-blur-md border border-white/60 rounded shadow-md hover:bg-pink-500 hover:border-pink-500 hover:text-white transition-all group active:scale-95">
+                <span class="text-[14px] font-black text-gray-900 group-hover:text-white leading-none">${size}</span>
+                ${detail ? `<span class="text-[10px] text-gray-600 group-hover:text-pink-100 font-bold tracking-tight mt-0.5">${detail}</span>` : ''}
+            </button>
+            `;
+        }).join('');
+
+        const vCount = p.viewCount || Math.floor(Math.random() * 5000) + 1000;
+        const cCount = p.cartCount || Math.floor(Math.random() * 2000) + 500;
+
+        listDiv.innerHTML += `
+          <div class="relative flex flex-col h-full min-w-full bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-200 border border-gray-200">
+            
+            <div class="group relative overflow-hidden bg-gray-100 aspect-[3/4]" onclick="window.openLightbox('${p.resim}', '${p.isim.replace(/'/g, "\\'")}', ${p.fiyat})">
+              <img src="${p.resim}" alt="${p.isim}" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer" />
+              
+              <div class="absolute top-2 right-2 bg-white/80 backdrop-blur rounded p-1.5 shadow-sm text-xs text-gray-600"><i class="fa-solid fa-search"></i></div>
+              
+              <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent pt-12 pb-2 px-1.5">
+                <div class="text-[10px] text-white font-bold mb-1.5 ml-1 drop-shadow-md tracking-widest uppercase"><i class="fa-solid fa-bolt text-yellow-400 mr-1"></i>Hızlı Ekle</div>
+                <div class="flex gap-1.5 overflow-x-auto pb-1 hide-scrollbar snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch;">
+                    ${variantBoxes}
+                </div>
+              </div>
+            </div>
+            
+            <div class="swiper banner-swiper w-full border-b border-gray-100" style="height: 22px; overflow: hidden;">
+                <div class="swiper-wrapper">
+				<div class="swiper-slide bg-blue-500 text-white text-center text-[10px] sm:text-xs font-semibold flex items-center justify-center tracking-wider">📦 Şeffaf Kargo</div>
+                    <div class="swiper-slide bg-green-500 text-white text-center text-[10px] sm:text-xs font-semibold flex items-center justify-center tracking-wider">💳 Hızlı Teslimat</div>
+                    <div class="swiper-slide bg-orange-500 text-white text-center text-[10px] sm:text-xs font-semibold flex items-center justify-center tracking-wider">🚚 Kargo Bedava</div>
+
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-1 px-2 py-2 shrink-0">
+                <h3 class="text-xs font-semibold text-gray-900 line-clamp-2 leading-snug">${p.isim}</h3>
+                
+                <div class="swiper product-popularity-swiper w-full mt-0.5" style="height: 20px; overflow: hidden;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide flex items-center gap-1 text-[9px] sm:text-[10px] overflow-hidden">
+                            <span class="text-orange-500">😊</span>
+                            <span class="text-gray-700 leading-tight">24 saatte <span class="font-bold text-orange-500">${vCount}</span> inceleme!</span>
+                        </div>
+                        <div class="swiper-slide flex items-center gap-1 text-[9px] sm:text-[10px] overflow-hidden">
+                            <span class="text-orange-500">🛒</span>
+                            <span class="text-gray-700 leading-tight"><span class="font-bold text-orange-500">${cCount}</span> sepet!</span>
+                        </div>
+						
+                    </div>
+					
+                </div>
+				<div data-testid="additional-info-div" class="additional-info">
+<div data-testid="additional-info-div" class="additional-info">
+    <div data-testid="static-social-proof-wrapper" class="static-social-proof-wrapper">
+        <div data-testid="social-proof" class="social-proof social-proof--static">
+            <div class="social-proof-content" data-testid="social-proof-content-rushDelivery">
+                <span data-testid="emoji" class="emoji">🚛</span>
+                <div data-testid="description" class="description">
+                    <span data-testid="green" class="green">Hızlı teslimat</span> yapılıyor!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="review-rating" data-testid="review-rating">
+    <div data-testid="average-rating" class="average-rating">4.9</div>
+    <div data-testid="rating-stars-container" class="rating-stars-container">
+        <!-- 1. Yıldız - %100 dolu -->
+        <div data-testid="star-wrapper" class="star-wrapper">
+            <img data-testid="star-empty" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-grey.svg" alt="" width="10" class="star-empty" aria-hidden="true">
+            <div data-testid="star-full-wrapper" class="star-full-wrapper" style="width: 100%;">
+                <img data-testid="star-full" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-orange.svg" alt="" width="10" class="star-full" aria-hidden="true">
+            </div>
+        </div>
+        <!-- 2. Yıldız - %100 dolu -->
+        <div data-testid="star-wrapper" class="star-wrapper">
+            <img data-testid="star-empty" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-grey.svg" alt="" width="10" class="star-empty" aria-hidden="true">
+            <div data-testid="star-full-wrapper" class="star-full-wrapper" style="width: 100%;">
+                <img data-testid="star-full" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-orange.svg" alt="" width="10" class="star-full" aria-hidden="true">
+            </div>
+        </div>
+        <!-- 3. Yıldız - %100 dolu -->
+        <div data-testid="star-wrapper" class="star-wrapper">
+            <img data-testid="star-empty" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-grey.svg" alt="" width="10" class="star-empty" aria-hidden="true">
+            <div data-testid="star-full-wrapper" class="star-full-wrapper" style="width: 100%;">
+                <img data-testid="star-full" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-orange.svg" alt="" width="10" class="star-full" aria-hidden="true">
+            </div>
+        </div>
+        <!-- 4. Yıldız - %100 dolu -->
+        <div data-testid="star-wrapper" class="star-wrapper">
+            <img data-testid="star-empty" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-grey.svg" alt="" width="10" class="star-empty" aria-hidden="true">
+            <div data-testid="star-full-wrapper" class="star-full-wrapper" style="width: 100%;">
+                <img data-testid="star-full" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-orange.svg" alt="" width="10" class="star-full" aria-hidden="true">
+            </div>
+        </div>
+        <!-- 5. Yıldız - %90 dolu (4.9 için) -->
+        <div data-testid="star-wrapper" class="star-wrapper">
+            <img data-testid="star-empty" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-grey.svg" alt="" width="10" class="star-empty" aria-hidden="true">
+            <div data-testid="star-full-wrapper" class="star-full-wrapper" style="width: 90%;">
+                <img data-testid="star-full" src="https://cdn.dsmcdn.com/web/assets/rating-and-review-small-star-orange.svg" alt="" width="10" class="star-full" aria-hidden="true">
+            </div>
+        </div>
+    </div>
+    <div class="total-count">(${cCount})</div>
+    <img src="https://cdn.dsmcdn.com/sfint/production/icons/camera.svg" alt="Değerlendirme fotoğrafları mevcut" class="review-photo">
+</div>
+               <!-- <div class="text-sm text-pink-500 font-bold mt-0.5">${p.fiyat} ₺</div>-->
+            </div>
+          </div>`;
+      });
+
+      new Swiper('.banner-swiper', { direction: 'vertical', loop: true, autoplay: { delay: 2000, disableOnInteraction: false }, allowTouchMove: false });
+      new Swiper('.product-popularity-swiper', { direction: 'vertical', loop: true, autoplay: { delay: 2500, disableOnInteraction: false }, allowTouchMove: false });
+    }
+
+    window.openLightbox = (imageUrl, productName, productPrice) => {
+      const existingLightbox = document.querySelector('.lightbox-overlay'); if (existingLightbox) existingLightbox.remove();
+      const overlay = document.createElement('div'); overlay.className = 'lightbox-overlay';
+      overlay.innerHTML = `
+        <div class="text-center" onclick="event.stopPropagation();">
+          <img src="${imageUrl}" class="lightbox-image mb-4 bg-white p-1">
+          <div class="text-white font-bold text-lg mb-1">${productName}</div>
+          <div class="text-pink-400 font-bold text-xl">${productPrice} ₺</div>
+        </div>`;
+      overlay.addEventListener('click', () => overlay.remove());
+      document.body.appendChild(overlay);
+
+      const product = allProducts.find(p => p.isim === productName);
+      if (product) TrackingAPI.viewContent(product);
+    };
+
+    window.addToCart = (id, selectedVariant = '') => {
+      const product = allProducts.find(p => p.id === id); if (!product) return;
+      cart.push({ ...product, cartId: Date.now(), secilenVaryant: selectedVariant });
+      TrackingAPI.addToCart(product);
+      updateUI(); showToast(`✓ Seçim eklendi`, 'success');
+    };
+
+    window.removeFromCart = (cartId) => {
+      cart = cart.filter(item => item.cartId !== cartId); updateUI();
+    };
+
+    window.handleVariantChange = (cartId) => {
+      const selectEl = document.getElementById(`variant-${cartId}`);
+      const item = cart.find(i => i.cartId === cartId);
+      if (item && selectEl) item.secilenVaryant = selectEl.value;
+      updateUI();
+    };
+
+    window.processStickyClick = () => {
+      const min = campaignSettings.minOrderCount || 1;
+      if (cart.length === 0) { showToast('⚠️ Lütfen önce ürün seçin', 'warning'); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (cart.length < min) { showToast(`⚠️ En az ${min} ürün seçmelisiniz.`, 'warning'); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (cart.some(item => !item.secilenVaryant)) { showToast('⚠️ Eksik beden seçimlerini tamamlayın.', 'warning'); document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' }); return; }
+      document.getElementById('submitBtn').click();
+    };
+
+    function updateUI() {
+      const stickyBar = document.getElementById('sticky-bar');
+      const stickyBtn = document.getElementById('sticky-checkout-btn');
+      const orderSection = document.getElementById('order-section');
+      const cartCount = document.getElementById('cart-count');
+      const totalDisplay = document.getElementById('total-price-display');
+      const summaryDiv = document.getElementById('cart-items-summary');
+      const submitBtn = document.getElementById('submitBtn');
+      const warningBanner = document.getElementById('order-warning-banner');
+      const warningTitle = document.getElementById('warning-title');
+      const warningMessage = document.getElementById('warning-message');
+      const summaryCount = document.getElementById('summary-count');
+      const summaryTotal = document.getElementById('summary-total');
+      const min = campaignSettings.minOrderCount || 1;
+
+      const hasMissingVariants = cart.some(item => !item.secilenVaryant || item.secilenVaryant === "");
+
+      stickyBar.style.display = cart.length > 0 ? 'flex' : 'none';
+      orderSection.classList.toggle('hidden', cart.length === 0);
+
+      const selProdCountEl = document.getElementById('selected-product-count');
+      if (selProdCountEl) {
+          selProdCountEl.innerText = cart.length;
+          if (cart.length >= min) {
+              selProdCountEl.classList.remove('text-pink-600');
+              selProdCountEl.classList.add('text-green-600');
+          } else {
+              selProdCountEl.classList.remove('text-green-600');
+              selProdCountEl.classList.add('text-pink-600');
+          }
+      }
+
+      if (cart.length >= min && !window._hasAutoScrolledToForm) {
+          window._hasAutoScrolledToForm = true;
+          TrackingAPI.initiateCheckout(cart, calculateTotal());
+
+          setTimeout(() => {
+              document.getElementById('order-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+              setTimeout(() => { document.getElementById('adSoyad').focus(); }, 500);
+          }, 100);
+      } else if (cart.length < min) {
+          window._hasAutoScrolledToForm = false;
+      }
+
+      if (cart.length === 0) {
+        warningBanner.className = 'mt-4 border-2 border-pink-300 rounded-lg p-3 bg-pink-50 flex items-start gap-3 transition-all';
+        warningBanner.querySelector('i').className = 'fa-solid fa-circle-info text-pink-500 text-lg mt-0.5';
+        warningTitle.innerText = 'Ürün Seçimi Gerekli'; warningTitle.className = 'font-bold text-sm text-pink-700';
+        warningMessage.innerText = `Sipariş verebilmek için en az ${min} ürün seçin.`;
+        submitBtn.disabled = true; submitBtn.className = 'w-full bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-not-allowed'; submitBtn.innerText = `${min} ürün seçmeniz gerekiyor`;
+        stickyBtn.className = 'bg-gray-200 text-gray-600 px-6 py-2 rounded-full font-bold transition-all text-sm'; stickyBtn.innerText = 'Eksik Ürün Var';
+      } else if (cart.length < min) {
+        warningBanner.className = 'mt-4 border-2 border-pink-300 rounded-lg p-3 bg-pink-50 flex items-start gap-3 transition-all';
+        warningBanner.querySelector('i').className = 'fa-solid fa-circle-info text-pink-500 text-lg mt-0.5';
+        warningTitle.innerText = 'Ürün Seçimi Eksik'; warningTitle.className = 'font-bold text-sm text-pink-700';
+        warningMessage.innerText = `Kampanya için ${min - cart.length} ürün daha ekleyin.`;
+        submitBtn.disabled = true; submitBtn.className = 'w-full bg-pink-300 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-not-allowed'; submitBtn.innerText = `${min - cart.length} ürün daha seçmelisiniz`;
+        stickyBtn.className = 'bg-pink-100 text-pink-500 px-6 py-2 rounded-full font-bold transition-all text-sm'; stickyBtn.innerText = `${min - cart.length} Ürün Daha Seçin`;
+      } else if (hasMissingVariants) {
+        warningBanner.className = 'mt-4 border-2 border-yellow-300 rounded-lg p-3 bg-yellow-50 flex items-start gap-3 transition-all';
+        warningBanner.querySelector('i').className = 'fa-solid fa-triangle-exclamation text-yellow-500 text-lg mt-0.5';
+        warningTitle.innerText = 'Beden Seçimi Eksik'; warningTitle.className = 'font-bold text-sm text-yellow-700';
+        warningMessage.innerText = 'Sepetteki ürünler için beden/varyant seçimi yapın.';
+        submitBtn.disabled = true; submitBtn.className = 'w-full bg-yellow-400 text-white font-bold py-3 px-6 rounded-lg transition-colors cursor-not-allowed'; submitBtn.innerText = 'Tüm seçimleri tamamlayın';
+        stickyBtn.className = 'bg-yellow-100 text-yellow-600 px-6 py-2 rounded-full font-bold transition-all text-sm'; stickyBtn.innerText = 'Beden Seçin';
+      } else {
+        warningBanner.className = 'mt-4 border-2 border-green-300 rounded-lg p-3 bg-green-50 flex items-start gap-3 transition-all';
+        warningBanner.querySelector('i').className = 'fa-solid fa-circle-check text-green-500 text-lg mt-0.5';
+        warningTitle.innerText = 'Siparişe Hazırsınız'; warningTitle.className = 'font-bold text-sm text-green-700';
+        warningMessage.innerText = 'Harika! Siparişi onaylayabilirsiniz.';
+        submitBtn.disabled = false; submitBtn.className = 'w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-lg transition-colors shadow-md'; submitBtn.innerHTML = 'Siparişi Tamamla <i class="fa-solid fa-arrow-right ml-2"></i>';
+        stickyBtn.className = 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg px-6 py-2 rounded-full font-bold transition-all text-sm hover:scale-105'; stickyBtn.innerText = 'Siparişi Tamamla';
+      }
+
+      let total = 0; summaryDiv.innerHTML = '';
+      cart.forEach((item, index) => {
+        const price = (index > 0 && campaignSettings.active) ? campaignSettings.secondProductPrice : item.fiyat;
+        total += price;
+        const variantName = item.varyantAdi || 'Beden';
+        const selectErrorClass = (!item.secilenVaryant) ? "border-red-400 bg-red-50 text-red-600" : "border-gray-200 bg-white text-gray-700";
+        const itemErrorClass = (!item.secilenVaryant) ? "border-red-300 bg-red-50/50" : "border-gray-200 bg-white";
+        const variantOptions = (item.varyantlar || []).map(v => `<option value="${v}" ${item.secilenVaryant === v ? 'selected' : ''}>${v}</option>`).join('');
+        
+        summaryDiv.innerHTML += `
+          <div class="border ${itemErrorClass} rounded-lg p-3 relative flex items-center gap-4 transition-colors">
+            <button type="button" onclick="window.removeFromCart(${item.cartId})" class="absolute -top-2 -right-2 size-6 bg-white border border-gray-200 shadow-sm rounded-full flex items-center justify-center text-red-500 hover:bg-red-50 transition-colors">
+              <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+            <img src="${item.resim}" class="size-16 object-cover rounded-md border border-gray-100">
+            <div class="flex-1 min-w-0">
+              <h4 class="text-sm font-semibold text-gray-900 truncate mb-1">${item.isim}</h4>
+              <div class="text-sm text-pink-500 font-bold mb-2">${price} ₺</div>
+              <select id="variant-${item.cartId}" onchange="window.handleVariantChange(${item.cartId})" class="w-full px-2 py-1.5 text-xs border rounded-md outline-none ${selectErrorClass}">
+                <option value="">${variantName} Seçiniz</option>
+                ${variantOptions}
+              </select>
+            </div>
+          </div>`;
+      });
+
+      cartCount.innerText = `${cart.length} Ürün`;
+      totalDisplay.innerText = total.toFixed(2) + ' ₺';
+      summaryCount.innerText = `${cart.length} Adet`;
+      summaryTotal.innerText = total.toFixed(2) + ' ₺';
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const validation = validateForm();
+      if (!validation.isValid) { showToast('Lütfen formdaki hataları düzeltin', 'error'); return; }
+      if (cart.some(item => !item.secilenVaryant)) { showToast('Lütfen tüm bedenleri seçin', 'error'); return; }
+      
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> İşleniyor...';
+      
+      try {
+        const adSoyadRaw = document.getElementById('adSoyad').value.trim();
+        const firstName = adSoyadRaw.split(' ')[0];
+        const lastName = adSoyadRaw.split(' ').slice(1).join(' ');
+        
+        const customerInfo = {
+            firstName: firstName,
+            lastName: lastName,
+            phone: document.getElementById('telefon').value.trim(),
+            city: document.getElementById('il').value,
+            email: ''
+        };
+
+        const ip = await (await fetch('https://api.ipify.org?format=json')).json();
+        const totalTutar = calculateTotal();
+        
+        const orderRef = await addDoc(collection(db, "orders"), {
+          musteri: {
+            adSoyad: adSoyadRaw,
+            tel: customerInfo.phone,
+            il: customerInfo.city,
+            ilce: document.getElementById('ilce').value,
+            adres: document.getElementById('adres').value.trim(),
+            mesaj: document.getElementById('mesaj').value.trim()
+          },
+          urunler: cart.map(i => ({ id: i.id, isim: i.isim, varyant: i.secilenVaryant })),
+          toplamTutar: totalTutar.toFixed(2) + ' ₺',
+          ip: ip.ip, tarih: serverTimestamp(), durum: 'yeni', kaynakSite: window.AKTIF_DOMAIN || window.location.hostname  
+        });
+
+        TrackingAPI.purchase(orderRef.id, cart, totalTutar, customerInfo);
+
+        window.showSuccessModal(); setTimeout(() => location.reload(), 15000);
+      } catch (err) {
+        showToast('Hata oluştu, tekrar deneyin.', 'error');
+        btn.disabled = false; btn.innerHTML = 'Siparişi Tamamla <i class="fa-solid fa-arrow-right ml-2"></i>';
+      }
+    });
+
+    initSystem();
+  </script>
+</body>
+</html>
